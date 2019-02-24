@@ -27,6 +27,7 @@ defmodule Foobar.Periodically do
   end
 
   @impl true
+
   def handle_info(:work, state) do
     {:ok, to_recompile} = File.ls("recompile")      
     case to_recompile do
