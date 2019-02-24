@@ -32,6 +32,9 @@ defmodule Foobar.Periodically do
     case to_recompile do
       [] -> nil
       files ->
+        Enum.each(files, fn(f) ->
+          System.cmd("rm", [f])
+        end)
         Mix.Tasks.Compile.Elixir.run(["--ignore-module-conflict"])
         require Logger
         Logger.info("Recompile Success")
