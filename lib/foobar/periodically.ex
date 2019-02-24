@@ -1,10 +1,10 @@
-# defmodule Tim do
-#   def buzz do
-#   end
-# end
-# 
-# defmodule Bob do
-# end
+defmodule Tim do
+  def buzz do
+  end
+end
+
+defmodule Bob do
+end
 
 defmodule Foobar.Periodically do
   use GenServer
@@ -24,12 +24,11 @@ defmodule Foobar.Periodically do
   @impl true
   def handle_info(:work, state) do
     {:ok, to_recompile} = File.ls("recompile")      
-    Enum.each(to_recompile, fn(module) ->
-      require Logger
-      Logger.info("Recompiling #{module}")
-      # r :"Elixir.#{module}"
-      {_, 0} = System.cmd("rm" [module])
-    end)
+    case to_recompile do
+      [] -> nil
+      files -> Mix.Tasks.Compile.Elixir.run(["--ignore-module-conflict"])
+    end
+
     schedule_work()
 
     {:noreply, state}
