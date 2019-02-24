@@ -20,10 +20,13 @@ defmodule Foobar.Periodically do
 
   @impl true
   def handle_info(:work, state) do
-    # we should listen and see if the helper
-    # file has any modules written to it and if so recompile that shiz
-    # and then log
-      
+    {:ok, to_recompile} = File.ls("recompile")      
+    Enum.each(to_recompile, fn(module) ->
+      require Logger
+      Logger.info("Recompiling #{module}")
+      r :"Elixir.#{module}"
+      {_, 0} = System.cmd("rm" [module])
+    end)
     # Reschedule once more
     schedule_work()
 
