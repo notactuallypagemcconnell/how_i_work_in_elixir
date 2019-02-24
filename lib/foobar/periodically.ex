@@ -30,14 +30,10 @@ defmodule Foobar.Periodically do
     end
 
     schedule_work()
-
     {:noreply, state}
   end
 
   defp schedule_work do
     Process.send_after(self(), :work, :timer.seconds(1))
   end
-
-
-
 end
