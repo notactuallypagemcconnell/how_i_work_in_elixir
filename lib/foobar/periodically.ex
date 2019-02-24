@@ -23,7 +23,7 @@ defmodule Foobar.Periodically do
     # we should listen and see if the helper
     # file has any modules written to it and if so recompile that shiz
     # and then log
-    
+      
     # Reschedule once more
     schedule_work()
 
