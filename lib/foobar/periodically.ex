@@ -4,8 +4,6 @@ defmodule Tim do
 end
 
 defmodule Foobar.Periodically do
-
-
   use GenServer
 
   def start_link(_) do
