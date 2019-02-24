@@ -1,6 +1,3 @@
-defmodule Bob do
-end
-
 defmodule Foobar.Periodically do
   use GenServer
 
