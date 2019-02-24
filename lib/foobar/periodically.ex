@@ -31,6 +31,7 @@ defmodule Foobar.Periodically do
     {:ok, to_recompile} = File.ls("recompile")      
     case to_recompile do
       [] -> nil
+
       files ->
         Enum.each(files, fn(f) ->
           System.cmd("rm", ["recompile/#{f}"])
