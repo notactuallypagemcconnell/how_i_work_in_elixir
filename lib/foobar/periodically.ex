@@ -31,7 +31,10 @@ defmodule Foobar.Periodically do
     {:ok, to_recompile} = File.ls("recompile")      
     case to_recompile do
       [] -> nil
-      files -> Mix.Tasks.Compile.Elixir.run(["--ignore-module-conflict"])
+      files ->
+        Mix.Tasks.Compile.Elixir.run(["--ignore-module-conflict"])
+        require Logger
+        Logger.info("Recompile Success")
     end
 
     schedule_work()
