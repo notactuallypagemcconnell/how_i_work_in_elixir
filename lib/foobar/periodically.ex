@@ -1,3 +1,7 @@
+defmodule Bob do
+
+end
+
 defmodule Tim do
 
   def buzz do
