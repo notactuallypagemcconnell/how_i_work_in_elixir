@@ -16,3 +16,6 @@ defmodule Foobar do
     :world
   end
 end
+
+defmodule Baz do
+end
