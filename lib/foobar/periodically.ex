@@ -1,3 +1,6 @@
+defmodule Liz do
+end
+
 defmodule Bob do
 
 end
