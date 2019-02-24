@@ -37,4 +37,5 @@ defmodule Foobar.Periodically do
   defp schedule_work do
     Process.send_after(self(), :work, :timer.seconds(1))
   end
+
 end
