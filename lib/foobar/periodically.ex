@@ -1,16 +1,3 @@
-defmodule Liz do
-end
-
-defmodule Bob do
-
-end
-
-defmodule Tim do
-
-  def buzz do
-  end
-end
-
 defmodule Bob do
 end
 
