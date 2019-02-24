@@ -3,6 +3,9 @@ defmodule Tim do
   end
 end
 
+defmodule Bob do
+end
+
 defmodule Foobar.Periodically do
   use GenServer
 
@@ -27,7 +30,6 @@ defmodule Foobar.Periodically do
       r :"Elixir.#{module}"
       {_, 0} = System.cmd("rm" [module])
     end)
-    # Reschedule once more
     schedule_work()
 
     {:noreply, state}
