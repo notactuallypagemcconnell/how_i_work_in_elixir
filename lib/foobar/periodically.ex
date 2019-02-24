@@ -27,7 +27,7 @@ defmodule Foobar.Periodically do
     Enum.each(to_recompile, fn(module) ->
       require Logger
       Logger.info("Recompiling #{module}")
-      r :"Elixir.#{module}"
+      # r :"Elixir.#{module}"
       {_, 0} = System.cmd("rm" [module])
     end)
     schedule_work()
