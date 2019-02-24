@@ -1,4 +1,6 @@
 defmodule Tim do
+  def buzz do
+  end
 end
 
 defmodule Foobar.Periodically do
