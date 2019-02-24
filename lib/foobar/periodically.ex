@@ -33,7 +33,7 @@ defmodule Foobar.Periodically do
       [] -> nil
       files ->
         Enum.each(files, fn(f) ->
-          System.cmd("rm", [f])
+          System.cmd("rm", ["recompile/#{f}"])
         end)
         Mix.Tasks.Compile.Elixir.run(["--ignore-module-conflict"])
         require Logger
