@@ -1,5 +1,4 @@
 defmodule Foobar.Periodically do
-
   use GenServer
 
   def start_link(_) do
@@ -9,7 +8,8 @@ defmodule Foobar.Periodically do
   @impl true
   def init(state) do
     # Schedule work to be performed on start
-    schedule_work()
+    [interval | _] = (1..60) |> Enum.shuffle
+    schedule_work(interval)
 
     {:ok, state}
   end
@@ -17,24 +17,17 @@ defmodule Foobar.Periodically do
   @impl true
 
   def handle_info(:work, state) do
-    {:ok, to_recompile} = File.ls("recompile")      
-    case to_recompile do
-      [] -> nil
+    require Logger
+    Logger.warn("I'm running periodically")
 
-      files ->
-        Enum.each(files, fn(f) ->
-          System.cmd("rm", ["recompile/#{f}"])
-        end)
-        Mix.Tasks.Compile.Elixir.run(["--ignore-module-conflict"])
-        require Logger
-        Logger.info("Recompile Success")
-    end
-
-    schedule_work()
+    [interval | _] = (1..60) |> Enum.shuffle
+    schedule_work(interval)
     {:noreply, state}
   end
 
-  defp schedule_work do
-    Process.send_after(self(), :work, :timer.seconds(1))
+  defp schedule_work(interval) do
+    require Logger
+    Logger.warn("Running in #{interval}")
+    Process.send_after(self(), :work, :timer.seconds(interval))
   end
 end

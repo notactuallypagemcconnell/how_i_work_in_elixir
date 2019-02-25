@@ -22,7 +22,8 @@ defmodule Foobar.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:mix_test_watch, "~> 0.8", only: :dev, runtime: false}
+      {:mix_test_watch, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:observer_cli, "~> 1.4.2"},
     ]
   end
 end
