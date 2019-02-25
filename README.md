@@ -23,8 +23,11 @@ We will have 4 shells running.
 I split with iTerm2 currently, I should use tmux.
 
 In one shell: your editor
+
 In another: `iex -S mix` - this will be live-reloading your new code upon any changes with our new additions
+
 In another: `mix test.watch` - tests run on any change, can be configured to be per file or module not whole suite
+
 In another: `:observer_cli.start()` - A CLI observer interface to view the system
 
 Now we have a guarantee that all code is always loaded, the system runs tests whenever it changes, and we can inspect the state of things with our observer.
