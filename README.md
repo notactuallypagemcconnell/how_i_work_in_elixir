@@ -1,21 +1,32 @@
-# Foobar
+# An Elixir Development Environment POC
 
-**TODO: Add description**
+## Why?
+I write a good amount of Elixir.
+I want to leverage its speed and tool suite to optimize my ability to work on elixir systems.
 
-## Installation
+## Requirements
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `foobar` to your list of dependencies in `mix.exs`:
+1. A text editor. I like `vim`
+2. A shell, I like `zsh`
+3. Elixir
 
-```elixir
-def deps do
-  [
-    {:foobar, "~> 0.1.0"}
-  ]
-end
-```
+I also prefer to use `syntastic` - which works with Vim to ensure your code is valid.
+This is not a hard-requirement, but I find it nice.
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/foobar](https://hexdocs.pm/foobar).
+This works on OSX and Linux.
 
+We have two core dependencies, `mix_test_watch` and `observer_cli`.
+We leverage its file system monitor and `mix test.watch` task for the core of our flow.
+
+## Running Things
+We will have 4 shells running.
+I split with iTerm2 currently, I should use tmux.
+
+In one shell: your editor
+In another: `iex -S mix` - this will be live-reloading your new code upon any changes with our new additions
+In another: `mix test.watch` - tests run on any change, can be configured to be per file or module not whole suite
+In another: `:observer_cli.start()` - A CLI observer interface to view the system
+
+Now we have a guarantee that all code is always loaded, the system runs tests whenever it changes, and we can inspect the state of things with our observer.
+
+Any change we make is live and shoved in.
