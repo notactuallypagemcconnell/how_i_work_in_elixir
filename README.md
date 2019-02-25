@@ -30,3 +30,5 @@ In another: `:observer_cli.start()` - A CLI observer interface to view the syste
 Now we have a guarantee that all code is always loaded, the system runs tests whenever it changes, and we can inspect the state of things with our observer.
 
 Any change we make is live and shoved in.
+
+![screen](https://i.imgur.com/JLURq2T.jpg)
