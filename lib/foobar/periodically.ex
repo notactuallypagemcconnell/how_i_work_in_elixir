@@ -17,17 +17,15 @@ defmodule Foobar.Periodically do
   @impl true
 
   def handle_info(:work, state) do
-    require Logger
-    Logger.warn("I'm running periodically")
-
-    [interval | _] = (1..60) |> Enum.shuffle
+    [interval | _] = (1..5) |> Enum.shuffle
+    _ = Enum.map((1..100000), fn(n) -> n * interval + 1 end) # useless computational work
     schedule_work(interval)
     {:noreply, state}
   end
 
   defp schedule_work(interval) do
-    require Logger
-    Logger.warn("Running in #{interval}")
+    # require Logger
+    # Logger.warn("Running in #{interval}")
     Process.send_after(self(), :work, :timer.seconds(interval))
   end
 end
